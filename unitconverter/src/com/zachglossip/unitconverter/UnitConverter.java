@@ -24,7 +24,7 @@ public class UnitConverter {
       return;
     }
 
-    System.out.println(UnitConverterService.convert(original, newType, value));
+    System.out.println(result);
   }
 
 }
