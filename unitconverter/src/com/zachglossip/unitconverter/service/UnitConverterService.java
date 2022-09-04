@@ -14,7 +14,7 @@ public class UnitConverterService {
 
     BigDecimal originalBaseValue = originalUnit.getConversionRate().multiply(value);
 
-    return originalBaseValue.divide(newUnit.getConversionRate(), 10, RoundingMode.HALF_UP);
+    return originalBaseValue.divide(newUnit.getConversionRate(), 3, RoundingMode.HALF_UP);
   }
 
 }

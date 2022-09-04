@@ -3,6 +3,7 @@ package com.zachglossip.unitconverter;
 import com.zachglossip.unitconverter.domain.subtype.AreaUnitSubType;
 import com.zachglossip.unitconverter.domain.subtype.LengthUnitSubType;
 import com.zachglossip.unitconverter.domain.subtype.UnitSubType;
+import com.zachglossip.unitconverter.domain.subtype.VolumeUnitSubType;
 import com.zachglossip.unitconverter.service.UnitConverterService;
 
 import java.math.BigDecimal;
@@ -12,8 +13,8 @@ public class UnitConverter {
 
   public static void main(String[] args) {
     //INSERT VALUES TO CONVERT HERE
-    UnitSubType original = LengthUnitSubType.FOOT;
-    UnitSubType newType = AreaUnitSubType.SQUARE_MILLIMETER;
+    UnitSubType original = VolumeUnitSubType.TABLESPOON;
+    UnitSubType newType = VolumeUnitSubType.TEASPOON;
     BigDecimal value = new BigDecimal("1");
 
     BigDecimal result = UnitConverterService.convert(original, newType, value);
