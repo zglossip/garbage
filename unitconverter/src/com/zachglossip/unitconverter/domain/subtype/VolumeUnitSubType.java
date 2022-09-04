@@ -5,14 +5,14 @@ import com.zachglossip.unitconverter.domain.UnitType;
 import java.math.BigDecimal;
 
 public enum VolumeUnitSubType implements UnitSubType{
-  CUBIC_INCH(new BigDecimal("0.000578704")),
-  CUBIC_FOOT(new BigDecimal("1")),
-  CUBIC_YARD(new BigDecimal("27")),
-  CUBIC_MILE(new BigDecimal("1.472E+11")),
-  CUBIC_MILLIMETER(new BigDecimal("3.53147E-8")),
-  CUBIC_CENTIMETER(new BigDecimal("3.53147E-5")),
-  CUBIC_METER(new BigDecimal("35.3147")),
-  CUBIC_KILOMETER(new BigDecimal("3.531E+10")),
+  CUBIC_INCH(getCubedLength(LengthUnitSubType.INCH)),
+  CUBIC_FOOT(getCubedLength(LengthUnitSubType.FOOT)),
+  CUBIC_YARD(getCubedLength(LengthUnitSubType.YARD)),
+  CUBIC_MILE(getCubedLength(LengthUnitSubType.MILE)),
+  CUBIC_MILLIMETER(getCubedLength(LengthUnitSubType.MILLIMETER)),
+  CUBIC_CENTIMETER(getCubedLength(LengthUnitSubType.CENTIMETER)),
+  CUBIC_METER(getCubedLength(LengthUnitSubType.METER)),
+  CUBIC_KILOMETER(getCubedLength(LengthUnitSubType.KILOMETER)),
   GALLON(new BigDecimal("0.133680624")),
   QUART(new BigDecimal("0.033420156")),
   PINT(new BigDecimal("0.016710078")),
@@ -35,5 +35,10 @@ public enum VolumeUnitSubType implements UnitSubType{
 
   public BigDecimal getConversionRate() {
     return this.conversionRate;
+  }
+
+  private static BigDecimal getCubedLength(LengthUnitSubType lengthUnitSubType) {
+    BigDecimal unitConversionRate = LengthUnitSubType.FOOT.getConversionRate();
+    return lengthUnitSubType.getConversionRate().multiply(unitConversionRate).pow(3);
   }
 }

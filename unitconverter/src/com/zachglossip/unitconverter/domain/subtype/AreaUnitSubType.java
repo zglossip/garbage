@@ -5,14 +5,14 @@ import com.zachglossip.unitconverter.domain.UnitType;
 import java.math.BigDecimal;
 
 public enum AreaUnitSubType implements UnitSubType{
-  SQUARE_INCH(new BigDecimal("0.00694444")),
-  SQUARE_FOOT(new BigDecimal("1")),
-  SQUARE_YARD(new BigDecimal("9")),
-  SQUARE_MILE(new BigDecimal("2.788E+7")),
-  SQUARE_MILLIMETER(new BigDecimal("1.07639e-5")),
-  SQUARE_CENTIMETER(new BigDecimal("0.00107639")),
-  SQUARE_METER(new BigDecimal("10.7639")),
-  SQUARE_KILOMETER(new BigDecimal("1.076E+7")),
+  SQUARE_INCH(getSquaredLength(LengthUnitSubType.INCH)),
+  SQUARE_FOOT(getSquaredLength(LengthUnitSubType.FOOT)),
+  SQUARE_YARD(getSquaredLength(LengthUnitSubType.YARD)),
+  SQUARE_MILE(getSquaredLength(LengthUnitSubType.MILE)),
+  SQUARE_MILLIMETER(getSquaredLength(LengthUnitSubType.MILLIMETER)),
+  SQUARE_CENTIMETER(getSquaredLength(LengthUnitSubType.CENTIMETER)),
+  SQUARE_METER(getSquaredLength(LengthUnitSubType.METER)),
+  SQUARE_KILOMETER(getSquaredLength(LengthUnitSubType.KILOMETER)),
   ACRE(new BigDecimal("43560")),
   HECTACRE(new BigDecimal("107639"));
 
@@ -28,5 +28,10 @@ public enum AreaUnitSubType implements UnitSubType{
 
   public BigDecimal getConversionRate() {
     return conversionRate;
+  }
+
+  private static BigDecimal getSquaredLength(LengthUnitSubType lengthUnitSubType) {
+    BigDecimal unitConversionRate = LengthUnitSubType.FOOT.getConversionRate();
+    return lengthUnitSubType.getConversionRate().multiply(unitConversionRate).pow(2);
   }
 }
